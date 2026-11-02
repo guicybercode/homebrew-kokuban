@@ -3,11 +3,13 @@
 [Kokuban](https://github.com/guicybercode/kokuban.rs) is a native Rust terminal for Linux and macOS.
 
 ```sh
-brew tap guicybercode/kokuban
-brew trust guicybercode/kokuban      # Homebrew 7 loads third-party taps only after this
-brew install kokuban.rs              # `kokuban` executable: macOS (Apple Silicon, Intel) and Linux x86_64
-brew install --cask kokuban          # Kokuban.app in /Applications (macOS)
+brew install guicybercode/kokuban/kokuban.rs        # `kokuban` executable: macOS (Apple Silicon, Intel) and Linux x86_64
+brew install --cask guicybercode/kokuban/kokuban    # Kokuban.app in /Applications (macOS)
 ```
+
+The full name taps this repository and trusts the package in one step. To use short names
+instead, run `brew tap guicybercode/kokuban && brew trust guicybercode/kokuban` first
+(Homebrew 7 loads third-party taps only after `brew trust`).
 
 Upgrade with `brew upgrade kokuban.rs` or `brew upgrade --cask kokuban`, not with `kokuban --update`.
 
