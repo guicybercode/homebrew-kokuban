@@ -48,6 +48,14 @@ jobs:
       - run: brew test-bot --only-setup
 
       - run: brew test-bot --only-tap-syntax
-      # On a push to main the formula detection finds no diff, so name the
-      # formula explicitly; this is what builds it from source on Linux.
-      - run: brew test-bot --only-formulae --testing-formulae=guicybercode/kokuban/kokuban.rs
+
+      # `brew test-bot --only-formulae` ignores install failures for formulae
+      # without bottles, so install and test explicitly: macOS unpacks the
+      # release tarball, Linux builds the tagged source.
+      - run: brew install --verbose guicybercode/kokuban/kokuban.rs
+      - run: brew test --verbose guicybercode/kokuban/kokuban.rs
+      - run: brew linkage --test guicybercode/kokuban/kokuban.rs
+      - run: kokuban --version
+
+      - if: runner.os == 'macOS'
+        run: brew install --cask --verbose guicybercode/kokuban/kokuban
