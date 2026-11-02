@@ -48,4 +48,6 @@ jobs:
       - run: brew test-bot --only-setup
 
       - run: brew test-bot --only-tap-syntax
-      - run: brew test-bot --only-formulae
+      # On a push to main the formula detection finds no diff, so name the
+      # formula explicitly; this is what builds it from source on Linux.
+      - run: brew test-bot --only-formulae --testing-formulae=guicybercode/kokuban/kokuban.rs
